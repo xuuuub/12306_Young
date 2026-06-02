@@ -1,0 +1,75 @@
+<!--main.html -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>火车票系统 - 用户主界面</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+
+</head>
+<body>
+    <div class="container">
+        <!-- 左侧：用户订单信息 -->
+        <div class="user-info-panel">
+            <h2>🎫 我的订单</h2>
+             <button id="logout-btn" style="align-self: center; padding: 6px 12px; background-color: #e74c3c; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px;">
+                退出登录</button>
+            <h2>  </h2><!--给一个分割，防止ui过于靠近-->
+            <div id="orders-container">
+                <!-- 动态加载 -->
+            </div>
+        </div>
+
+        <!-- 右侧：主功能区 -->
+        <div class="main-content">
+            <div class="header-row">
+                <h1>🚄 火车票查询与购买</h1>
+            </div>
+
+            <!-- 查询条件 -->
+            <div class="search-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="departure">出发地</label>
+                        <input type="text" id="departure" placeholder="如：北京南" />
+                    </div>
+                    <div class="form-group">
+                        <label for="destination">目的地</label>
+                        <input type="text" id="destination" placeholder="如：上海虹桥" />
+                    </div>
+                    <div class="form-group">
+                        <label for="date">出发日期</label>
+                        <input type="date" id="date" />
+                    </div>
+                </div>
+                <button class="search-btn">查询车次</button>
+            </div>
+
+            <!-- 车次列表容器 -->
+            <div class="trains-list">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>车次</th>
+                            <th>出发站</th>
+                            <th>到达站</th>
+                            <th>出发时间</th>
+                            <th>票价</th>
+                            <th>余票</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 初始为空 -->
+                    </tbody>
+                </table>
+                <!-- 初始提示文字 -->
+                <div class="placeholder-text" id="placeholder">请输入您的出发地、目的地或日期进行查询</div>
+            </div>
+        </div>
+    </div>
+
+    <script src ="/static/js/main.js" defer>  </script>
+</body>
+</html>

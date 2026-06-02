@@ -1,0 +1,72 @@
+<!-- admin_trains.html -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>添加新列车 - 管理员</title>
+    <link rel="stylesheet" href="/static/css/admin_train.css">
+
+</head>
+<body>
+    <div class="container">
+        <a href="admin.html" class="back">← 返回管理员主页</a>
+        <h2>➕ 添加新列车</h2>
+        <form id="addTrainForm">
+            <div class="form-group">
+                <label>车次号（如 G101）:</label>
+                <input type="text" id="trainNumber" required placeholder="G101">
+            </div>
+            <div class="form-group">
+                <label>出发站:</label>
+                <input type="text" id="departure" required placeholder="北京南">
+            </div>
+            <div class="form-group">
+                <label>到达站:</label>
+                <input type="text" id="destination" required placeholder="上海虹桥">
+            </div>
+            <div class="form-group">
+                <label>出发时间:</label>
+                <input type="datetime-local" id="departureTime" required>
+            </div>
+            <div class="form-group">
+                <label>总座位数:</label>
+                <input type="number" id="totalSeats" min="1" value="500" required>
+            </div>
+            <div class="form-group">
+                <label>票价（元）:</label>
+                <input type="number" id="price" min="0" step="0.01" value="100.00" required>
+            </div>
+            <button type="submit" class="btn">添加列车</button>
+            <span id="addTrainMsg" class="message"></span>
+        </form>
+
+        <hr style="margin:30px 0;">
+        <h2>修改车次信息</h2>
+
+        <div>
+            <label>旧车次号：</label>
+            <input type="text" id="old-train-number">
+        </div>
+
+        <div>
+            <label>新车次号：</label>
+            <input type="text" id="new-train-number">
+        </div>
+
+        <div>
+            <label>新发车时间：</label>
+            <input type="datetime-local" id="edit-departure-time">
+        </div>
+
+        <div>
+            <label>新票价：</label>
+            <input type="number" step="0.01" id="edit-price">
+        </div>
+
+        <button onclick="updateTrain()">修改车次</button>
+
+    </div>
+
+    <script src="/static/js/admin_trains.js" defer> </script>
+</body>
+</html>

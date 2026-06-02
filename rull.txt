@@ -1,0 +1,134 @@
+mysql> describe group_orders;
++-------------------+------------------------------------+------+-----+-----------+-------+
+| Field             | Type                               | Null | Key | Default   | Extra |
++-------------------+------------------------------------+------+-----+-----------+-------+
+| group_id          | varchar(50)                        | NO   | PRI | NULL      |       |
+| applicant_user_id | int                                | NO   |     | NULL      |       |
+| train_id          | int                                | NO   |     | NULL      |       |
+| total_passengers  | int                                | NO   |     | NULL      |       |
+| total_amount      | decimal(10,2)                      | NO   |     | NULL      |       |
+| status            | enum('paid','cancelled','expired') | NO   |     | cancelled |       |
++-------------------+------------------------------------+------+-----+-----------+-------+
+6 rows in set (0.01 sec)
+
+mysql> describe group_passengers;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| id        | int         | NO   | PRI | NULL    | auto_increment |
+| group_id  | varchar(50) | NO   | MUL | NULL    |                |
+| user_id   | int         | YES  |     | NULL    |                |
+| real_name | char(30)    | NO   |     | NULL    |                |
+| idcard    | char(18)    | NO   |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> describe orders;
++------------+------------------------------------+------+-----+-------------------+-------------------+
+| Field      | Type                               | Null | Key | Default           | Extra             |
++------------+------------------------------------+------+-----+-------------------+-------------------+
+| id         | int                                | NO   | PRI | NULL              | auto_increment    |
+| user_id    | int                                | NO   | MUL | NULL              |                   |
+| train_id   | int                                | NO   | MUL | NULL              |                   |
+| order_time | datetime                           | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
+| status     | enum('paid','cancelled','expired') | YES  |     | NULL              |                   |
+| group_id   | char(50)                           | YES  |     | NULL              |                   |
++------------+------------------------------------+------+-----+-------------------+-------------------+
+6 rows in set (0.00 sec)
+
+mysql> describe users;
++-----------+----------------------+------+-----+---------+----------------+
+| Field     | Type                 | Null | Key | Default | Extra          |
++-----------+----------------------+------+-----+---------+----------------+
+| id        | int                  | NO   | PRI | NULL    | auto_increment |
+| username  | varchar(50)          | NO   | UNI | NULL    |                |
+| password  | varchar(100)         | NO   |     | NULL    |                |
+| role      | enum('user','admin') | NO   |     | user    |                |
+| real_name | char(30)             | NO   |     | NULL    |                |
+| idcard    | char(18)             | NO   | UNI | NULL    |                |
++-----------+----------------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> describe trains;
++-----------------+--------------------+------+-----+---------+----------------+
+| Field           | Type               | Null | Key | Default | Extra          |
++-----------------+--------------------+------+-----+---------+----------------+
+| id              | int                | NO   | PRI | NULL    | auto_increment |
+| train_number    | varchar(20)        | NO   | UNI | NULL    |                |
+| departure       | varchar(50)        | NO   |     | NULL    |                |
+| destination     | varchar(50)        | NO   |     | NULL    |                |
+| departure_time  | datetime           | NO   |     | NULL    |                |
+| total_seats     | int                | NO   |     | NULL    |                |
+| available_seats | int                | NO   |     | NULL    |                |
+| price           | decimal(7,2)       | NO   |     | 0.00    |                |
+| is_pre_sal      | enum('-1','0','1') | YES  |     | NULL    |                |
++-----------------+--------------------+------+-----+---------+----------------+
+9 rows in set (0.00 sec)
+
+
+
+| users | CREATE TABLE `users` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `role` enum('user','admin') NOT NULL DEFAULT 'user',
+  `real_name` char(30) NOT NULL,
+  `idcard` char(18) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`),
+  UNIQUE KEY `idcard` (`idcard`),
+  UNIQUE KEY `idcard_2` (`idcard`)
+) 
+
+
+| orders | CREATE TABLE `orders` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `train_id` int NOT NULL,
+  `order_time` datetime DEFAULT CURRENT_TIMESTAMP,
+  `status` enum('paid','cancelled','expired') DEFAULT NULL,
+  `group_id` char(50) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  KEY `train_id` (`train_id`),
+  CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`train_id`) REFERENCES `trains` (`id`)
+) 
+
+
+| trains | CREATE TABLE `trains` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `train_number` varchar(20) NOT NULL,
+  `departure` varchar(50) NOT NULL,
+  `destination` varchar(50) NOT NULL,
+  `departure_time` datetime NOT NULL,
+  `total_seats` int NOT NULL,
+  `available_seats` int NOT NULL,
+  `price` decimal(7,2) NOT NULL DEFAULT '0.00',
+  `is_pre_sal` enum('-1','0','1') DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `train_number` (`train_number`)
+) 
+
+
+| group_orders | CREATE TABLE `group_orders` (
+  `group_id` varchar(50) NOT NULL,
+  `applicant_user_id` int NOT NULL,
+  `train_id` int NOT NULL,
+  `total_passengers` int NOT NULL,
+  `total_amount` decimal(10,2) NOT NULL,
+  `status` enum('paid','cancelled','expired') NOT NULL DEFAULT 'cancelled',
+  PRIMARY KEY (`group_id`)
+) 
+
+
+| group_passengers | CREATE TABLE `group_passengers` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `group_id` varchar(50) NOT NULL,
+  `user_id` int DEFAULT NULL,
+  `real_name` char(30) NOT NULL,
+  `idcard` char(18) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `group_id` (`group_id`),
+  CONSTRAINT `group_passengers_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `group_orders` (`group_id`)
+)

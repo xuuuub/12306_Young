@@ -1,0 +1,73 @@
+<!--index.html -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>火车票系统 - 登录</title>
+    <link rel="stylesheet" href="/static/css/index.css">
+
+</head>
+<body>
+    <div class="container">
+        <h2>🚄 火车票售票系统</h2>
+
+        <!-- 登录表单（默认显示） -->
+        <div id="loginForm" class="active">
+            <div class="form-group">
+                <input type="text" id="loginUser" placeholder="用户名" />
+            </div>
+            <div class="form-group">
+                <input type="password" id="loginPass" placeholder="密码" />
+            </div>
+            <button onclick="login()">登录</button>
+            <div id="loginMsg"></div>
+            <div class="toggle-link" onclick="showRegister()">没有账号？去注册</div>
+            <div class="toggle-link" onclick="showChangePassword()">忘记密码？修改密码</div>
+
+        </div>
+
+        <!-- 注册表单（初始隐藏） -->
+        <div id="registerForm">
+
+            <div class="form-group">
+                <input type="text" id="regUser" placeholder="设置用户名" />
+            </div>
+            <div class="form-group">
+                <input type="password" id="regPass" placeholder="设置密码" />
+            </div>
+            <div class="form-group">
+                 <input type="text" id="regRealName" placeholder="真实姓名" />
+            </div>
+            <div class="form-group">
+                 <input type="text" id="regIdCard" placeholder="身份证号" />
+            </div>
+
+            <button onclick="register()">注册</button>
+            <div id="regMsg"></div>
+            <div class="toggle-link" onclick="showLogin()">已有账号？去登录</div>
+        </div>
+        <!-- 修改密码表单（初始隐藏） -->
+        <div id="changePasswordForm">
+
+            <div class="form-group">
+                <input type="text" id="cpUser" placeholder="用户名" />
+            </div>
+            <div class="form-group">
+                <input type="text" id="cpIdCard" placeholder="身份证" />
+            </div>
+            <div class="form-group">
+                <input type="password" id="cpNewPass" placeholder="新密码" />
+            </div>
+
+            <button onclick="changePassword()">修改密码</button>
+            <div id="cpMsg" class="msg"></div>
+            <div class="toggle-link" onclick="showLogin()">返回登录</div>
+        </div>
+
+
+    </div>
+
+    <script src="/static/js/index.js" defer></script>
+</body>
+</html>

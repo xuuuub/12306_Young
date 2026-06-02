@@ -1,0 +1,168 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f9fafb;
+    color: #333;
+    height: 100vh;
+        overflow: hidden;
+}
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+/* 左侧：用户信息区 */
+.user-info-panel {
+    width: 25%;
+    background: #ecf0f1;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+}
+#orders-container {
+    max-height: calc(100vh - 160px); 
+    overflow-y: auto;
+    padding-right: 6px;
+}
+
+.user-info-panel h2 {
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: #2c3e50;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #3498db;
+}
+.order-item {
+    background: white;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+.order-item p {
+    margin: 4px 0;
+    font-size: 14px;
+}
+.order-label {
+    font-weight: bold;
+    color: #2980b9;
+}
+
+/* 右侧：车票查询与购买 */
+.main-content {
+    width: 75%;
+    padding: 20px;
+}
+.header {
+    margin-bottom: 20px;
+}
+.header h1 {
+    font-size: 24px;
+    color: #2c3e50;
+}
+.header-row {
+    background: #3498db;         
+    padding: 20px 25px;        
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+/* 标题文字样式 */
+.header-row h1 {
+    color: white;                 
+    font-size: 26px;
+    margin: 0;                   
+}
+
+
+/* 查询表单 */
+.search-form {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+.form-group {
+    flex: 1;
+    min-width: 150px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 14px;
+}
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.search-btn {
+    padding: 10px 20px;
+    background: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.search-btn:hover {
+    background: #219653;
+}
+
+/* 车次列表 */
+.trains-list {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    max-height: calc(100vh - 360px); /* 标题 + 查询表单高度 */
+        overflow-y: auto;
+}
+.trains-list table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.trains-list th,
+.trains-list td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+.trains-list th {
+    background: #f1f2f6;
+    font-weight: bold;
+    color: #2c3e50;
+}
+.trains-list tr:last-child td {
+    border-bottom: none;
+}
+.buy-btn {
+    padding: 6px 12px;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.buy-btn:hover {
+    background: #c0392b;
+}
+.placeholder-text {
+    text-align: center;
+    padding: 20px;
+    color: #7f8c8d;
+    font-style: italic;
+}
+/*首行*/

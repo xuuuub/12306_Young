@@ -1,0 +1,48 @@
+<!-- admin.html -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>火车票系统 - 管理员后台</title>
+    <link rel="stylesheet" href="/static/css/admin.css">
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚄 火车票管理系统 - 管理员后台</h1>
+        </header>
+
+        <div class="nav-buttons">
+            <a href="admin_orders.html" class="nav-btn">📋 查看所有订单</a>
+            <a href="admin_trains.html" class="nav-btn">➕ 添加新列车</a>
+        </div>
+
+        <!-- 用户管理 -->
+        <div class="section">
+            <h2>👥 用户管理</h2>
+            <button id="refreshUsers" class="btn">刷新用户列表</button>
+
+            <div class="table-body-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>用户ID</th>
+                            <th>用户名</th>
+                            <th>角色</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="userList">
+                        <tr><td colspan="4">点击“刷新用户列表”加载数据</td></tr>
+                    </tbody>
+                    
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/admin.js" defer></script>
+
+</body>
+</html>

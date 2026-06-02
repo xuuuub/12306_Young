@@ -1,0 +1,68 @@
+body { 
+    font-family: Arial; 
+    background: #f5f5f5; 
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;   /* 禁止整页滚动 */
+}
+.container { 
+    width: 100vw; 
+    min-height: 100vh;
+    margin: 0 auto; 
+    background: white; 
+    padding: 20px; 
+    box-sizing: border-box;
+
+    display: flex;              
+    flex-direction: column;   
+    overflow: hidden; 
+}
+h2 { 
+    color: #f9f9f9; 
+    margin-top: 0; 
+    background-color: #1976d2; 
+    padding: 10px; 
+}
+table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    margin-top: 15px; }
+th, td { 
+    padding: 12px; 
+    text-align: left; 
+    border-bottom: 1px solid #ddd; }
+th { 
+    background: #fdf6f6; color: #c62828; }
+.status-paid { 
+    color: green; 
+    font-weight: bold; 
+}
+.status-cancelled { 
+    color: red; 
+    font-weight: bold; 
+}
+.btn {
+    background: #1976d2; color: white; border: none; padding: 6px 12px;
+    border-radius: 4px; cursor: pointer; font-size: 14px;
+}
+.danger-btn {
+    background: #d32f2f;
+}
+a.back { 
+    display: inline-block; 
+    margin-bottom: 15px; 
+    color: #1976d2; 
+    text-decoration: none; }
+a.back:hover { 
+    text-decoration: underline; 
+}
+.orders-table-wrapper {
+    flex: 1;            /* 吃掉 container 剩余高度 */
+    overflow-y: auto;  
+}
+.orders-table-wrapper thead th {/* 表头吸附 */
+    position: sticky;
+    top: 0;
+    background: #fdf6f6;
+    z-index: 2;
+}

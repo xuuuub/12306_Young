@@ -1,0 +1,43 @@
+<!-- admin_orders.html -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>所有订单 - 管理员</title>
+    <link rel="stylesheet" href="/static/css/admin_orders.css">
+</head>
+<body>
+    <div class="container">
+        <a href="admin.html" class="back">← 返回管理员主页</a>
+        <h2>📋 所有订单</h2>
+        <button class="btn" onclick="loadAllOrders()">刷新订单</button>
+
+        <div class="orders-table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>订单ID</th>
+                        <th>用户名</th>
+                        <th>车次</th>
+                        <th>出发 → 到达</th>
+                        <th>发车时间</th>
+                        <th>下单时间</th>
+                        <th>状态</th>
+                        <th>票型</th>
+                        <th>团体ID</th>
+                        <th>操作</th>
+                    
+                    </tr>
+                </thead>
+                <tbody id="ordersBody"></tbody>
+            </table>
+        </div>
+
+        <p id="emptyMsg" style="color:#888; display:none;">暂无订单</p>
+    </div>
+
+    <script src="/static/js/admin_orders.js" defer>
+        
+    </script>
+</body>
+</html>
